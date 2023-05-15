@@ -5,6 +5,10 @@ Aplikacja desktop - Vue 2 + Electron 13
 
 
 
+## Biblioteki 
+* https://bootstrap-vue.org/ - bootstrap 4
+
+
 ## Project setup
 ```
 npm install
