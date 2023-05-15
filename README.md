@@ -1,5 +1,10 @@
 # Aplikacja MH Hybryd
 
+Aplikacja desktop - Vue 2 + Electron 13
+
+
+
+
 ## Project setup
 ```
 npm install
