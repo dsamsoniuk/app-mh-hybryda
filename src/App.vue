@@ -1,10 +1,18 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div id="app" class="container-fluid mt-2">
+    <div class="row">
+      <div class="col-sm-2">
+
+          <b-list-group>
+            <b-list-group-item><router-link to="/">Home</router-link></b-list-group-item>
+            <b-list-group-item><router-link to="/about">About</router-link></b-list-group-item>
+          </b-list-group>
+
+      </div>
+      <div class="col-sm-10">
+        <router-view/>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -13,7 +13,9 @@ Aplikacja desktop - Vue 2 + Electron 13
 
 vue add router
 
+### Tutoriale:
 
+* https://vueschool.io/articles/vuejs-tutorials/how-to-use-vue-router-a-complete-tutorial/
 
 ## Project setup
 ```
