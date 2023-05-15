@@ -9,6 +9,12 @@ Aplikacja desktop - Vue 2 + Electron 13
 * https://bootstrap-vue.org/ - bootstrap 4
 
 
+## Metody:
+
+vue add router
+
+
+
 ## Project setup
 ```
 npm install
