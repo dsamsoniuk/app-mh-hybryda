@@ -17,6 +17,40 @@ vue add router
 
 * https://vueschool.io/articles/vuejs-tutorials/how-to-use-vue-router-a-complete-tutorial/
 
+
+
+Korzystałem z:
+
+* nodejs 16
+* npm 8.19
+
+## Debug-owanie, czyli odpal lokalnie aplikacje oraz pokazuj bledy w konsoli
+```
+npm run electron:serve
+``` 
+
+## Stworz build dla systemu linux czyli gotowa aplikacje
+```
+npm run electron:build -- --linux
+npm run electron:build -- --windows
+```
+
+## Windows jak uruchomic aplikacje
+```
+dist/win-unpacked/vue-desktop.exe
+```
+
+## Linux jak uruchomic aplikacje
+```
+./dist_electron/linux-unpacked/vue-desktop
+```
+
+
+
+
+
+
+
 ## Project setup
 ```
 npm install
