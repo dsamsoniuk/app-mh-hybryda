@@ -58,14 +58,13 @@
 
        </div>
 
-
     </div>
   </template>
   
   <script>
   // @ is an alias to /src
   export default {
-    name: 'EditDevice',
+    name: 'EditDeviceFormView',
     data(){
       return {
         id: 0,

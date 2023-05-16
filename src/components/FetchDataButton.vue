@@ -20,10 +20,15 @@
       async fetchAllData(){
           console.log('pobieram')
           try {
-            let res =  await axios.get('https://cat-fact.herokuapp.com/facts/random?amount=5');
-            this.localStoreHelper.setItemToString('animals', res.data)
+            let res =  await axios.get('http://localhost:8001');
+            this.localStoreHelper.setItemToString('devices', res.data)
           } catch(err) {
             console.log(err)
+            // TODO: chwilowe w ramach testow
+            this.localStoreHelper.setItemToString('devices', [
+              {id:0, name:'brak wynikow', model:'test', note:'notka'}
+            ])
+
           }
       }
     }
@@ -32,19 +37,5 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
-  h3 {
-    margin: 40px 0 0;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
   </style>
   
