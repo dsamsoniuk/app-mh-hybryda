@@ -6,7 +6,8 @@ Aplikacja desktop - Vue 2 + Electron 13
 
 
 ## Biblioteki 
-* https://bootstrap-vue.org/ - bootstrap 4
+* https://bootstrap-vue.org/ - bootstrap vue - generuje gotowe elementy html
+* https://getbootstrap.com/docs/5.0/getting-started/introduction/ - bootstrap 5
 
 
 ## Metody:

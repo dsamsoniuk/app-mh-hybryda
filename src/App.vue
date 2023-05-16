@@ -1,20 +1,49 @@
 <template>
-  <div id="app" class="container-fluid mt-2">
-    <div class="row">
-      <div class="col-sm-2">
+  <div id="app" class="h-100">
 
-          <b-nav vertical justified type="dark" class="dark">
+    <b-navbar toggleable="lg" type="dark" variant="primary" class="p-2">
+      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item href="#">Home</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+
+    </b-navbar>
+
+    <div class="row h-100">
+
+        <nav class="col-sm-2 d-md-block bg-light sidebar collapse text-start">
+          <div class="position-sticky pt-3">
+
+          <b-nav vertical justified>
             <b-nav-item active>APP MH-Hybryda</b-nav-item>
-            <b-nav-item><router-link to="/">Home</router-link></b-nav-item>
-            <b-nav-item><router-link to="/about">About</router-link></b-nav-item>
-            <b-nav-item><router-link to="/devices">Urządzenia</router-link></b-nav-item>
-            <b-nav-item disabled>Disabled</b-nav-item>
+            <!-- <li class="nav-item">
+              <router-link to="/" class="nav-link" target="_self" aria-current="page">Home</router-link>
+            </li> -->
+       
+            <b-nav-item to="/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              Home
+            </b-nav-item>
+            <b-nav-item to="/about">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              About
+            </b-nav-item>
+            <b-nav-item to="/devices">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              Urządzenia
+            </b-nav-item>
+            <b-nav-item>  <FetchDataButton /></b-nav-item>
           </b-nav>
-          <FetchDataButton />
-      </div>
-      <div class="col-sm-10">
-        <router-view/>
-      </div>
+        </div>
+
+        </nav>
+
+      <div class="col-sm-10"> <router-view/> </div>
     </div>
   </div>
 </template>
@@ -38,16 +67,12 @@ export default {
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
+nav a.router-link-exact-active, nav a.router-link-exact-active.nav-link {
   color: #42b983;
 }
 </style>
