@@ -14,7 +14,7 @@
 
     </b-navbar>
 
-    <div class="row h-100">
+    <div class="row h-100 m-0">
 
         <nav class="col-sm-2 d-md-block bg-light sidebar collapse text-start">
           <div class="position-sticky pt-3">
@@ -43,8 +43,9 @@
 
         </nav>
 
-      <div class="col-sm-10"> <router-view/> </div>
+      <div class="col-sm-10 pt-4"> <router-view/> </div>
     </div>
+
   </div>
 </template>
 
