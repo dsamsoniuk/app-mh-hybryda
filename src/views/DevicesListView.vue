@@ -17,7 +17,8 @@
 <script>
 // @ is an alias to /src
 import FetchDataButton from '@/components/FetchDataButton.vue';
-import LocalStoreHelper from '@/helpers/LocalStoreHelper';
+import DBHelper from '@/helpers/DBHelper';
+import DeviceModel from '@/models/DeviceModel';
 
 export default {
   name: 'DevicesListView',
@@ -25,20 +26,33 @@ export default {
       FetchDataButton
   },
   data() {
-        return {
-            localStoreHelper: new LocalStoreHelper(),
-            items: [],
-            fields: [
-                "id",
-                "name",
-                "model",
-                "note",
-                "actions"
-            ]
-        };
+    return {
+        dBHelper: new DBHelper(),
+        items: [],
+        fields: [
+            "id",
+            "name",
+            "model",
+            "note",
+            "actions"
+        ]
+    };
   },
   mounted() {
-      this.items = this.localStoreHelper.getItemFromString("devices");
+      // this.items = this.dBHelper.getItemFromString("devices");
+
+      let devModel = new DeviceModel()
+      console.log(devModel.simplifyData())
+      this.items = devModel.findAll()
+      // let res2 = dev.findAll();
+      
+
+      // console.log(res)
+      // res.name = 'ojojoj'
+      // res.save()
+      // let nowy = dev.find(1)
+      // console.log(nowy)
+
   },
   methods: {
       editItem(item) { console.log(item); }

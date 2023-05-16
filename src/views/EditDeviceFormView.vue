@@ -62,6 +62,8 @@
   </template>
   
   <script>
+import DeviceModel from '@/models/DeviceModel'
+
   // @ is an alias to /src
   export default {
     name: 'EditDeviceFormView',
@@ -78,19 +80,28 @@
     },
     mounted(){
       this.id = this.$route.params.id
+      let devModel = new DeviceModel()
+      this.form = devModel.find(this.id)
     },
     methods: {
       onSubmit(event) {
         event.preventDefault()
-        alert(JSON.stringify(this.form))
+        let formData = JSON.parse(JSON.stringify(this.form))
+        let devModel = new DeviceModel()
+        devModel.load(formData).save()
+
+        this.$bvToast.toast('Zapisano zmiany', {
+          title: `Informacja`,
+          variant: 'success',
+          autoHideDelay: 5000,
+        })
+
       },
       onReset(event) {
         event.preventDefault()
-        // Reset our form values
-        this.form.model = ''
-        this.form.name = ''
-        this.form.note = ''
-        // Trick to reset/clear native browser form validation state
+        let devModel = new DeviceModel()
+
+        this.form = devModel.find()
         this.show = false
         this.$nextTick(() => {
           this.show = true
@@ -99,4 +110,9 @@
     }
   }
   </script>
-  
+<style>
+/** bez tego toast szybko znika*/
+.toast:not(.show) {
+    display: block;
+ }
+</style>

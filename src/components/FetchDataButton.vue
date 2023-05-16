@@ -7,13 +7,13 @@
 
   <script>
   import axios from 'axios';
-  import LocalStoreHelper from '../helpers/LocalStoreHelper'
+  import DBHelper from '../helpers/DBHelper'
 
   export default {
     name: 'FetchDataButton',
     data(){
       return {
-        localStoreHelper: new LocalStoreHelper()
+        dBHelper: new DBHelper()
       }
     },
     methods: {
@@ -21,11 +21,11 @@
           console.log('pobieram')
           try {
             let res =  await axios.get('http://localhost:8001');
-            this.localStoreHelper.setItemToString('devices', res.data)
+            this.dBHelper.setItemToString('device', res.data)
           } catch(err) {
             console.log(err)
             // TODO: chwilowe w ramach testow
-            this.localStoreHelper.setItemToString('devices', [
+            this.dBHelper.setItemToString('device', [
               {id:0, name:'brak wynikow', model:'test', note:'notka'}
             ])
 
