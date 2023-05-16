@@ -7,9 +7,15 @@
 
   <script>
   import axios from 'axios';
+  import LocalStoreHelper from '../helpers/LocalStoreHelper'
 
   export default {
     name: 'FetchDataButton',
+    data(){
+      return {
+        localStoreHelper: new LocalStoreHelper()
+      }
+    },
     methods: {
       async fetchAllData(){
           console.log('pobieram')

@@ -2,48 +2,49 @@
   <div id="app" class="h-100">
 
     <b-navbar toggleable="lg" type="dark" variant="primary" class="p-2">
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+      <b-navbar-brand href="#"># MH</b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <!-- <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="#">Home</b-nav-item>
         </b-navbar-nav>
-      </b-collapse>
+      </b-collapse> -->
 
     </b-navbar>
 
     <div class="row h-100 m-0">
 
-        <nav class="col-sm-2 d-md-block bg-light sidebar collapse text-start">
+        <nav class="col-3 d-md-block bg-light sidebar text-start border-end">
           <div class="position-sticky pt-3">
 
           <b-nav vertical justified>
-            <b-nav-item active>APP MH-Hybryda</b-nav-item>
+            <b-nav-item active>Panel</b-nav-item>
             <!-- <li class="nav-item">
               <router-link to="/" class="nav-link" target="_self" aria-current="page">Home</router-link>
             </li> -->
        
-            <b-nav-item to="/">
+            <b-nav-item :to="{name: 'home'}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               Home
             </b-nav-item>
-            <b-nav-item to="/about">
+            <b-nav-item  :to="{name: 'about'}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               About
             </b-nav-item>
-            <b-nav-item to="/devices">
+            <b-nav-item :to="{name: 'devices'}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               Urządzenia
             </b-nav-item>
             <b-nav-item>  <FetchDataButton /></b-nav-item>
+            <b-nav-item>  Synchronizacja</b-nav-item>
           </b-nav>
         </div>
 
         </nav>
 
-      <div class="col-sm-10 pt-4"> <router-view/> </div>
+      <div class="col-9 pt-4"> <router-view/> </div>
     </div>
 
   </div>

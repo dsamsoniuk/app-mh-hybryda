@@ -1,6 +1,13 @@
 <template>
   <div class="hello2">
-    <b-table striped hover :items="items"></b-table>
+    <b-table striped hover :items="items" :fields="fields">
+      <template v-slot:cell(actions)="{ item }">
+        <span>
+          <router-link :to="{name: 'deviceedit', params:{ id: item._id }}" class="btn btn-success">Edycja</router-link>
+        </span>
+      </template>
+    </b-table>
+
   </div>
 </template>
 
@@ -12,13 +19,22 @@ export default {
   data() {
     return {
       localStoreHelper: new LocalStoreHelper(),
-      items: []
+      items: [],
+      fields: [
+        '_id',
+        'status',
+        'createdAt',
+        'actions'
+      ]
     }
   },
   props: { },
   mounted(){
     this.items = this.localStoreHelper.getItemFromString('animals')
   },
+  methods: {
+    editItem(item) { console.log(item); }
+  }
 }
 </script>
 
