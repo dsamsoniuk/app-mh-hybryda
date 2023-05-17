@@ -5,11 +5,11 @@ export default class DBHelper {
   
     index = 'db_'
 
-    setItemToString(name, value){
+    setDataByTable(name, value){
       localStorage.setItem(this.index + name, JSON.stringify(value))
     }
 
-    getItemFromString(name){
+    getDataByTable(name){
       return localStorage[this.index + name] ? JSON.parse(localStorage[this.index + name]) : false;
     }
 }

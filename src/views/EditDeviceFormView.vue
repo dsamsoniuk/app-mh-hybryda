@@ -1,37 +1,35 @@
 <template>
     <div class="editDeviceForm">
-        <h2>Formularz urzadzenia</h2>
-       id: {{ id }};;;
 
-       <div class="row">
+      <h2>Edycja urządzenia</h2>
+      <hr>
+       <div class="col-sm-6">
 
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form @submit="onSubmit" v-if="show" class="text-start">
       <b-form-group
         id="input-group-1"
-        label="Nazwa urzadzenia:"
+        label="Nazwa urządzenia:"
         label-for="input-1"
-        description="pole wymagane"
       >
         <b-form-input
           id="input-1"
           v-model="form.name"
           type="text"
-          placeholder="Nazwa urzadzenia"
+          placeholder="Nazwa urządzenia"
           required
         ></b-form-input>
       </b-form-group>
 
       <b-form-group
         id="input-group-1"
-        label="Model urzadzenia"
+        label="Model urządzenia"
         label-for="input-1"
-        description="pole wymagane"
       >
         <b-form-input
           id="input-2"
           v-model="form.model"
           type="text"
-          placeholder="Model urzadzenia"
+          placeholder="Model urządzenia"
           required
         ></b-form-input>
       </b-form-group>
@@ -40,7 +38,6 @@
         id="input-group-1"
         label="Notatka:"
         label-for="input-1"
-        description="pole wymagane"
       >
         <b-form-input
           id="input-3"
@@ -52,8 +49,7 @@
       </b-form-group>
 
 
-      <b-button type="submit" variant="success">Zapisz</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button type="submit" variant="success" class="mt-2">Zapisz</b-button>
     </b-form>
 
        </div>
@@ -75,19 +71,21 @@ import DeviceModel from '@/models/DeviceModel'
           model: '',
           note: '',
         },
-        show: true
+        show: true,
       }
     },
     mounted(){
-      this.id = this.$route.params.id
-      let devModel = new DeviceModel()
-      this.form = devModel.find(this.id)
+      this.id       = this.$route.params.id
+      let devModel  = new DeviceModel()
+      this.form     = devModel.find(this.id).simplifyData()
     },
     methods: {
       onSubmit(event) {
         event.preventDefault()
+
         let formData = JSON.parse(JSON.stringify(this.form))
         let devModel = new DeviceModel()
+
         devModel.load(formData).save()
 
         this.$bvToast.toast('Zapisano zmiany', {
@@ -96,16 +94,6 @@ import DeviceModel from '@/models/DeviceModel'
           autoHideDelay: 5000,
         })
 
-      },
-      onReset(event) {
-        event.preventDefault()
-        let devModel = new DeviceModel()
-
-        this.form = devModel.find()
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
       }
     }
   }

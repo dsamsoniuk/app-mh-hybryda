@@ -13,6 +13,13 @@ Vue.use(BootstrapVue);
 
 
 Vue.config.productionTip = false
+// Vue.prototype.breadcrumbs = [{ // global values
+//     text: 'index',
+//     href: '#'
+//   }
+// ];
+
+
 
 new Vue({
   router,

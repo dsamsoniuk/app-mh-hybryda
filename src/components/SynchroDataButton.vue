@@ -1,7 +1,7 @@
 
 <template>
     <div class="fetch-data d-inline m-1">
-      <b-button variant="success" @click="fetchAllData">Pobierz dane</b-button>
+      <b-button variant="warning" @click="sendAllData">Synchronizuj dane</b-button>
     </div>
 </template>
 
@@ -10,7 +10,7 @@
   import DBHelper from '../helpers/DBHelper'
 
   export default {
-    name: 'FetchDataButton',
+    name: 'SynchroDataButton',
     data(){
       return {
         dBHelper: new DBHelper()
@@ -20,22 +20,25 @@
       tableName: String
     },
     methods: {
-      async fetchAllData(){
+      async sendAllData(){
           try {
-            let url = process.env.VUE_APP_URL_TEST
-            let res =  await axios.get(url);
-            this.dBHelper.setDataByTable(this.tableName, res.data)
+            let url     = process.env.VUE_APP_URL_TEST
+            let records = this.dBHelper.getDataByTable(this.tableName)
 
-            this.$bvToast.toast('Pobrano dane', {
+            for (let i in records) {
+              if (records[i].flagModifed == true) {
+                await axios.put(url + '/put.php', records[i]);               
+              }
+            }
+            
+            this.$bvToast.toast('Synchronizacja zakonczona', {
               title: `Informacja`,
               variant: 'success',
               autoHideDelay: 5000,
             })
-
-            location.reload()
           } catch(err) {
             console.log(err)
-
+            
             this.$bvToast.toast('Problem z połączeniem', {
               title: `Informacja`,
               variant: 'danger',

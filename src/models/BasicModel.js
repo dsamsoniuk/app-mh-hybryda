@@ -2,12 +2,16 @@ import DBHelper from "@/helpers/DBHelper";
 
 export default class BasicModel {
     tableName   = '';
-
     id          = null;
-    modifed     = false;
 
-    
-
+    flagModifed = false;
+    flagDeleted = false;
+    flagNew     = false;
+    /**
+     * Załaduj dane w formie json-a do modelu
+     * @param {object} params 
+     * @returns 
+     */
     load(params){
         let attrObject = this.getAttributeList()
         for (let i in attrObject) {
@@ -17,24 +21,33 @@ export default class BasicModel {
         }
         return this
     }
-
-    find(id, asObject = false){
-        let records = (new DBHelper()).getItemFromString(this.tableName)
+    /**
+     * Znajdz model wg ID w formie objectu lub 
+     * @param {*} id 
+     * @param {*} asObject 
+     * @returns 
+     */
+    find(id){
+        let records = (new DBHelper()).getDataByTable(this.tableName)
         if (records == false) {
-            return asObject ? this : {}
+            return this
         }
         for (let i in records) {
             if (records[i].id == id) {
-                return asObject ? this.load(records[i]) : records[i]
+                return this.load(records[i])
             }
         }
-        return asObject ? this : {}
+        return this
     }
-
+    /**
+     * Pobierz wyszstkie wpisy wg modelu w formie objektow lub prostych danych json
+     * @param {boolean} asObject 
+     * @returns 
+     */
     findAll(asObject = false){
         let results = []
         let clonedObject;
-        let records = (new DBHelper()).getItemFromString(this.tableName)
+        let records = (new DBHelper()).getDataByTable(this.tableName)
 
         if (records == false) {
             return []
@@ -48,6 +61,10 @@ export default class BasicModel {
         }
         return results
     }
+    /**
+     * Zwroc dane modelu w prostej formie json-a
+     * @returns array
+     */
     simplifyData(){
         let newRecord   = {}
         let attrObject  = this.getAttributeList()
@@ -56,11 +73,14 @@ export default class BasicModel {
         }
         return newRecord
     }
+    /**
+     * Zapisz wszystkie zmiany do lokalnej bazy
+     */
     save() {
-        this.modifed    = true
+        this.flagModifed = true
 
         let newRecord   = this.simplifyData()
-        let records     = (new DBHelper()).getItemFromString(this.tableName)
+        let records     = (new DBHelper()).getDataByTable(this.tableName)
         let reloadedRecords = []
 
         for (let i in records) {
@@ -69,9 +89,12 @@ export default class BasicModel {
             } 
         }
         reloadedRecords.push(newRecord);
-        (new DBHelper()).setItemToString(this.tableName, reloadedRecords);
+        (new DBHelper()).setDataByTable(this.tableName, reloadedRecords);
     }
-
+    /**
+     * Zwroc prosta liste atrybutow w modelu
+     * @returns json
+     */
     getAttributeList(){
         return Object.getOwnPropertyNames(this)
     }
