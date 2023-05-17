@@ -22,7 +22,7 @@
     methods: {
       async fetchAllData(){
           try {
-            let url = process.env.VUE_APP_URL_TEST
+            let url = process.env.VUE_APP_URL_TEST + '/device/get-device-list'
             let res =  await axios.get(url);
             this.dBHelper.setDataByTable(this.tableName, res.data)
 

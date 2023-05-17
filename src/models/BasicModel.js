@@ -91,6 +91,10 @@ export default class BasicModel {
         reloadedRecords.push(newRecord);
         (new DBHelper()).setDataByTable(this.tableName, reloadedRecords);
     }
+    delete(){
+        // this.flagDeleted = true
+        // this.save() // TODO cos nie działa
+    }
     /**
      * Zwroc prosta liste atrybutow w modelu
      * @returns json

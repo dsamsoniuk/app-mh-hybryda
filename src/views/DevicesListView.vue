@@ -6,10 +6,11 @@
       <FetchDataButton table-name="device"/>
       <SynchroDataButton table-name="device"/>
     </div>
-    <b-table striped hover :items="items" :fields="fields">
+    <b-table striped hover :items="items" :fields="fields"  :tbody-tr-class="rowClass">
       <template v-slot:cell(actions)="{ item }">
         <span>
           <router-link :to="{name: 'deviceedit', params:{ id: item.id }}" class="btn btn-success">Edycja</router-link>
+          <a href="#" @click="deleteModel(item.id)" class="btn btn-danger">Usuń</a>
         </span>
       </template>
     </b-table>
@@ -45,7 +46,21 @@ export default {
       this.items = devModel.findAll()
   },
   methods: {
-      editItem(item) { console.log(item); }
+    rowClass(item, type) {
+      if (item.flagDeleted === true && type === 'row') {
+        return 'bg-danger'
+      } else {
+        return null
+      }
+    },
+    deleteModel(deviceId) { 
+      let devModel = new DeviceModel()
+      let rr = devModel.find(deviceId)
+      // console.log(rr)
+      // rr.delete()
+      console.log(rr)
+      // this.items = devModel.findAll()
+    }
   },
 }
 </script>

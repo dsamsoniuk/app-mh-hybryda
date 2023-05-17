@@ -22,12 +22,12 @@
     methods: {
       async sendAllData(){
           try {
-            let url     = process.env.VUE_APP_URL_TEST
+            let url     = process.env.VUE_APP_URL_TEST + '/device/synchro-devices'
             let records = this.dBHelper.getDataByTable(this.tableName)
 
             for (let i in records) {
               if (records[i].flagModifed == true) {
-                await axios.put(url + '/put.php', records[i]);               
+                await axios.post(url, records[i]);               
               }
             }
             
