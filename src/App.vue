@@ -3,6 +3,7 @@
 
     <b-navbar toggleable="lg" type="dark" variant="primary" class="p-2">
       <b-navbar-brand href="#"># MH</b-navbar-brand>
+      <CheckOnlineSwitch />
     </b-navbar>
 
     <div class="row h-100 m-0">
@@ -44,10 +45,12 @@
 
 <script>
 import FetchDataButton from '@/components/FetchDataButton.vue'
+import CheckOnlineSwitch from '@/components/CheckOnlineSwitch.vue'
+
 export default {
   name: 'AppView',
   components: {
-    FetchDataButton
+    FetchDataButton, CheckOnlineSwitch
   }
 }
 </script>
