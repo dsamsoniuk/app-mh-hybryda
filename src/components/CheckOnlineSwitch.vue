@@ -14,7 +14,6 @@
     data(){
       return {
         isOnline: false,
-        req: ''
       }
     },
     props: {
@@ -27,8 +26,7 @@
       async checkOnline(){
           try {
             let url = process.env.VUE_APP_URL_TEST
-            var res = await axios.get(url);
-            this.req = res
+            await axios.get(url);
             this.isOnline = true
           } catch(err) {
             this.isOnline = false
