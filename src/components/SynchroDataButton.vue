@@ -27,7 +27,22 @@
 
             for (let i in records) {
               if (records[i].flagModifed == true) {
-                await axios.post(url, records[i]);               
+                // await axios.post(url, records[i]);               
+                //await axios.post(url, {data:{a:232}});   
+                console.log(records[i], {id:222}) 
+                await axios.request({
+                  method: 'POST',
+                   headers: {
+                      'Content-Type' : 'application/json; charset=UTF-8',
+                    },
+                  url: url,
+                  data: {
+                    next_swastik: 'lets add something here',
+                    id: 77,
+                    aa: 1
+                  },
+
+                })           
               }
             }
             
