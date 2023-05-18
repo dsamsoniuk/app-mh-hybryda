@@ -2,8 +2,14 @@
 
 Aplikacja desktop - Vue 2 + Electron 13
 
+Korzystałem z:
 
+* nodejs 16
+* npm 8.19
 
+## Podstawy 
+
+* [Pomocnik](/docs/pomocnik.md)
 
 ## Biblioteki 
 * https://bootstrap-vue.org/ - bootstrap vue - generuje gotowe elementy html
@@ -19,11 +25,6 @@ vue add router
 * https://vueschool.io/articles/vuejs-tutorials/how-to-use-vue-router-a-complete-tutorial/
 
 
-
-Korzystałem z:
-
-* nodejs 16
-* npm 8.19
 
 ## Debug-owanie, czyli odpal lokalnie aplikacje oraz pokazuj bledy w konsoli
 ```

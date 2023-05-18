@@ -22,24 +22,23 @@
     methods: {
       async fetchAllData(){
           try {
-            let url = process.env.VUE_APP_URL_TEST + '/device/get-device-list'
+            // let url = process.env.VUE_APP_URL_TEST + '/device/get-device-list'
+            let url = localStorage.url_api_platform + '/device/get-device-list'
             let res =  await axios.get(url);
             this.dBHelper.setDataByTable(this.tableName, res.data)
 
             this.$bvToast.toast('Pobrano dane', {
               title: `Informacja`,
               variant: 'success',
-              autoHideDelay: 5000,
             })
 
-            location.reload()
+            this.$parent.reloadTable();
           } catch(err) {
             console.log(err)
 
             this.$bvToast.toast('Problem z połączeniem', {
               title: `Informacja`,
               variant: 'danger',
-              autoHideDelay: 5000,
             })
           }
       }

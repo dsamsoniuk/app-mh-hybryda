@@ -45,21 +45,23 @@ export default class BasicModel {
      * @returns 
      */
     findAll(asObject = false){
-        let results = []
-        let clonedObject;
+        // let results = []
+        // let clonedObject, clonedModel;
         let records = (new DBHelper()).getDataByTable(this.tableName)
-
         if (records == false) {
             return []
         }
-        if (asObject) {
+        if (asObject === false) {
             return records
         }
-        for (let i in records) {
-            clonedObject = Object.assign({}, this.load(records[i]));
-            results.push( clonedObject )
-        }
-        return results
+        return records
+
+        // for (let i in records) {
+        //     clonedModel = Object.assign({}, this);
+        //     clonedObject = Object.assign({}, clonedModel.load(records[i]));
+        //     results.push( clonedObject )
+        // }
+        // return results
     }
     /**
      * Zwroc dane modelu w prostej formie json-a
@@ -92,8 +94,9 @@ export default class BasicModel {
         (new DBHelper()).setDataByTable(this.tableName, reloadedRecords);
     }
     delete(){
-        // this.flagDeleted = true
-        // this.save() // TODO cos nie działa
+        this.flagDeleted = true
+        this.save() // TODO cos nie działa
+        return true;
     }
     /**
      * Zwroc prosta liste atrybutow w modelu
@@ -101,5 +104,10 @@ export default class BasicModel {
      */
     getAttributeList(){
         return Object.getOwnPropertyNames(this)
+    }
+    getBasicAttributes(){
+        // TODO: tylko zwroc podstawowe atrybuty
+        // let attributes = this.getAttributeList()
+
     }
 }

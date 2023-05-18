@@ -1,5 +1,6 @@
 <template>
     <div class="editDeviceForm">
+      <router-link :to="{name: 'devices'}" class="btn btn-primary float-start">powrót</router-link>
 
       <h2>Edycja urządzenia</h2>
       <hr>
@@ -93,7 +94,8 @@ import DeviceModel from '@/models/DeviceModel'
           variant: 'success',
           autoHideDelay: 5000,
         })
-
+        let routeLink = this.$router.resolve({ name: 'devices'})
+        location.href = routeLink.href;
       }
     }
   }

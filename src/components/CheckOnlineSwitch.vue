@@ -25,7 +25,7 @@
     methods: {
       async checkOnline(){
           try {
-            let url = process.env.VUE_APP_URL_TEST
+            let url = localStorage.url_api_platform//process.env.VUE_APP_URL_TEST
             await axios.get(url);
             this.isOnline = true
           } catch(err) {

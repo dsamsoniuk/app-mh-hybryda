@@ -6,8 +6,10 @@
 </template>
 
   <script>
-  import axios from 'axios';
-  import DBHelper from '../helpers/DBHelper'
+
+  //import axios from 'axios';
+  import DBHelper from '../helpers/DBHelper';
+  import $ from 'jquery';
 
   export default {
     name: 'SynchroDataButton',
@@ -20,37 +22,47 @@
       tableName: String
     },
     methods: {
-      async sendAllData(){
+      sendAllData(){
           try {
-            let url     = process.env.VUE_APP_URL_TEST + '/device/synchro-devices'
-            let records = this.dBHelper.getDataByTable(this.tableName)
-
+            // let url             = process.env.VUE_APP_URL_TEST + '/device/synchro-devices'
+            let url             = localStorage.url_api_platform + '/device/synchro-devices'
+            let records         = this.dBHelper.getDataByTable(this.tableName)
+            var reloadedRecords = []
+            var failRequest = false;
             for (let i in records) {
               if (records[i].flagModifed == true) {
-                // await axios.post(url, records[i]);               
-                //await axios.post(url, {data:{a:232}});   
-                console.log(records[i], {id:222}) 
-                await axios.request({
-                  method: 'POST',
-                   headers: {
-                      'Content-Type' : 'application/json; charset=UTF-8',
-                    },
-                  url: url,
-                  data: {
-                    next_swastik: 'lets add something here',
-                    id: 77,
-                    aa: 1
-                  },
 
-                })           
+                $.ajax({url:url, method:'POST', data: records[i], async: false})
+                  .done(function(data, textStatus){
+                    if (textStatus == 'success') {
+                      records[i].flagModifed  = false;
+                      records[i].flagNew      = false;
+                      records[i].flagDeleted  = false;
+                    }
+                    reloadedRecords.push(records[i])
+                  })
+                  .fail(function(){
+                    failRequest = true
+                    reloadedRecords.push(records[i])
+                  });
+
+              } else {
+                reloadedRecords.push(records[i])
               }
             }
-            
-            this.$bvToast.toast('Synchronizacja zakonczona', {
+            this.dBHelper.setDataByTable(this.tableName, reloadedRecords);
+            if (failRequest) {
+              this.$bvToast.toast('Synchronizacja nie powiodła się', {
+                title: `Informacja`,
+                variant: 'danger',
+              });
+            } else {
+              this.$bvToast.toast('Synchronizacja zakonczona', {
               title: `Informacja`,
               variant: 'success',
-              autoHideDelay: 5000,
-            })
+            });
+            }
+            this.$parent.reloadTable();
           } catch(err) {
             console.log(err)
             
