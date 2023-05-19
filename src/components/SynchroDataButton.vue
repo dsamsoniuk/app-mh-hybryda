@@ -1,7 +1,7 @@
 
 <template>
     <div class="fetch-data d-inline m-1">
-      <b-button variant="warning" @click="sendAllData">Synchronizuj dane</b-button>
+      <b-button variant="warning" @click="sendAllData">Wyślij dane</b-button>
     </div>
 </template>
 
