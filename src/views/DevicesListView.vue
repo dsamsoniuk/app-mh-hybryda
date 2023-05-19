@@ -2,13 +2,14 @@
   <div class="devices">
     <h2>Lista urządzeń</h2>
     <hr>
-    <div class="float-start d-block w-100">
+    <div class="float-end d-block">
       <FetchDataButton table-name="device"/>
       <SynchroDataButton table-name="device"/>
     </div>
-    <br>
     <div class="container-fluid">
       <br>
+      <router-link :to="{name: 'deviceedit', params:{ id: 0 }}" class="btn btn-success float-start me-3">Dodaj nowy</router-link>
+
     <b-pagination
       v-model="currentPage"
       :total-rows="rows"

@@ -60,7 +60,7 @@
   
   <script>
 import DeviceModel from '@/models/DeviceModel'
-
+import GenerateTextHelper from '../helpers/GenerateTextHelper'
   // @ is an alias to /src
   export default {
     name: 'EditDeviceFormView',
@@ -78,7 +78,12 @@ import DeviceModel from '@/models/DeviceModel'
     mounted(){
       this.id       = this.$route.params.id
       let devModel  = new DeviceModel()
-      this.form     = devModel.find(this.id).simplifyData()
+      if (this.id) {
+        this.form = devModel.find(this.id).simplifyData()
+      } else {
+        this.form.flagNew = true
+        this.form.id = (new GenerateTextHelper()).makeid(20)
+      }
     },
     methods: {
       onSubmit(event) {
@@ -88,7 +93,7 @@ import DeviceModel from '@/models/DeviceModel'
         let devModel = new DeviceModel()
 
         devModel.load(formData).save()
-
+console.log(formData)
         this.$bvToast.toast('Zapisano zmiany', {
           title: `Informacja`,
           variant: 'success',

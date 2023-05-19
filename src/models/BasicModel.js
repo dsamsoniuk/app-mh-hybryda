@@ -2,7 +2,7 @@ import DBHelper from "@/helpers/DBHelper";
 
 export default class BasicModel {
     tableName   = '';
-    id          = null;
+    id          = 0;
 
     flagModifed = false;
     flagDeleted = false;
