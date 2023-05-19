@@ -52,6 +52,11 @@
         urlapi: 'http://localhost:8000/index.php/appDesktop',
       }
     },
+    mounted(){
+      if (localStorage.url_api_platform) {
+        this.urlapi = localStorage.url_api_platform
+      }
+    },
     methods: {
       saveUrlPlatform(){
         localStorage.url_api_platform = this.urlapi
